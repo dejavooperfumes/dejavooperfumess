@@ -1,0 +1,255 @@
+{% load static %}
+
+<html>
+
+<head>
+    <title>First page</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'css/bootstrap-grid.min.css' %}" rel="stylesheet" />
+    <link href="{% static 'aos-master/dist/aos.css' %}" rel="stylesheet" />
+    <link rel="stylesheet" href="{% static 'style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'style.js' %}" type="text/js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'aos-master/dist/aos.js' %}"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            AOS.init();
+        });
+    </script>
+
+    <style>
+        @media (max-width: 767px) {
+            .carousel-inner .carousel-item>div {
+                display: none;
+            }
+
+            .carousel-inner .carousel-item>div:first-child {
+                display: block;
+            }
+        }
+
+        .carousel-inner .carousel-item.active,
+        .carousel-inner .carousel-item-next,
+        .carousel-inner .carousel-item-prev {
+            display: flex;
+        }
+
+        /* medium and up screens */
+        @media (min-width: 768px) {
+
+            .carousel-inner .carousel-item-end.active,
+            .carousel-inner .carousel-item-next {
+                transform: translateX(25%);
+            }
+
+            .carousel-inner .carousel-item-start.active,
+            .carousel-inner .carousel-item-prev {
+                transform: translateX(-25%);
+            }
+        }
+
+        .carousel-inner .carousel-item-end,
+        .carousel-inner .carousel-item-start {
+            transform: translateX(0);
+        }
+    </style>
+
+</head>
+
+<body>
+   
+        
+    
+    <div class="container-fluid">
+
+        <div class="row  p-3 " id="topheader">
+            <div class="col-md-4">
+                <img src="https://cdn.shopify.com/s/files/1/0454/2477/1240/files/logo_1_300x300.png?v=1623927662" alt=""
+                    width="50%">
+            </div>
+            <div class="col-md-6 p-2">
+                <nav class="navbar navbar-expand-lg ">
+                    <div class="container-fluid">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="/mattress/">Home</a>
+                                </li>
+                        
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/contact/">
+                                        Contact
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/about/">
+                                        About
+                                    </a>
+
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/services/">
+                                        Services
+                                    </a>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/blogs/">
+                                        Blogs
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/collection/">
+                                        Shop
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/Faq/">
+                                        Faq
+                                    </a>
+                                </li>
+                                {% if user.is_authenticated %}
+                                <li><a href="" class="nav-link">Hi, {{ user.username}}
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/logout/">
+                                        Logout
+                                    </a>
+                                </li>
+                                {% else %}
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/signup/">
+                                        Register
+                                    </a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/login/">
+                                        login
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-2 p-2">
+                <button class="btn btn-info text-light float-right">Order Now <i
+                        class="fa fa-bag-shopping px-1"></i></button>
+                </nav>
+            </div>
+        </div>
+
+
+
+        {% block content %}
+        {% endblock %}
+        <div class="row  p-4" id="bg98">
+            <div class="col-md-3">
+                <img src="{% static 'side.webp' %}" width="50%">
+                <p>Softie Mattress Shop offers a wide range of luxurious and comfortable
+                    mattresses for a restful night's sleep. Our expert staff are ready to assist you
+                    in selecting the perfect mattress to suit your needs and budget..</p>
+               <p>Visit us today for a better night's sleep</p>
+                <i class="fa-brands fa-twitter border shadow-sm"></i>
+                <i class="fa-brands fa-facebook border shadow-sm"></i>
+                <i class="fa-brands fa-google border shadow-sm"></i>
+                <i class="fab fa-tumblr border shadow-sm"></i>
+            </div>
+            <div class="col-md-3">
+                <h5>SUBSCRIBE TO OUR NEWSLETTER</h5>
+                <label>your e-mail address</label>
+                <form action="/insertemail/" method="post">
+                {% csrf_token %}
+                <input type="email" class="form-control" name="email" placeholder=" Enter email" />
+                <div>
+                <a href="/mattress/"><button class=" btn border  my-3 btn-lg shadow-sm  bg-light">sign up</button></a>
+                </form>
+                </div>
+            </div>
+            <div class="col-md-3 namea">
+                <h5>INFORMATION</h5>
+                <a href="/Faq/"  class="text-decoration-none text-dark"><p>Help</p></a>
+                    <a href="/about/"  class="text-decoration-none text-dark"><p>Information</p></a>
+                    <a href="/contact/"  class="text-decoration-none text-dark"><p>privacy policy</p></a>
+                    <a href="/shipping/" class="text-decoration-none text-dark"><p>shipping details</p></a>
+                <img src="{% static 'girl.webp' %}" width="50%">
+            </div>
+            <div class="col-md-3">
+                <h5>WE ARE @</h5>
+                <i class="fa fa-house-chimney"></i>
+                <span>address</span>
+                <p>No:  58 A, green city,
+                    bathinda</p>
+                <hr />
+                <i class="fa-solid fa-envelope"></i>
+                <span>E-mail</span>
+                <BR>
+                <a href="">support@softie.com</a>
+                <br />
+                <a href="#">admin@softie.com</a>
+                <hr />
+                <i class="fa-solid fa-phone"></i>
+                <span>Phone</span>
+                <BR>
+                0123 - 456 - 789
+                <br />
+                0000 - 1234 - 56789
+                <hr />
+                <i class="fa-solid fa-fax"></i>
+                <span>Fax</span>
+                <p>0000 - 1234 - 56789</p>
+            </div>
+        </div>
+        <footer class="bg-light">
+            <p class="my-5">© 2023 Softie Design Themes</p>
+
+        </footer>
+    </div>
+    </div>
+    <script>
+ $(document).ready(function(){
+ 
+ $(".btnlike").click(function(){
+ var pid=$(this).parent().find('.pid').val();   
+ var uid=$(this).parent().find('.uid').val();  
+ //alert(pid);
+ //alert(uid);
+ $.ajax({
+    dataType:'json',
+    url:'/dolike/',
+    data: {
+        'pid':pid,
+        'uid':uid
+    },
+    success:function(data)
+    {
+        //alert(data);
+        if (data.is_taken) {
+            alert(data.error_message);
+        }
+        else
+        {
+        alert(data.message);
+        window.location.href='/contact/';    
+        }
+    },
+    error:function(){
+    //window.location.href='/mattress/';    
+    //alert("error");
+    }
+ });
+ });    
+ });   
+</script>
+</body>
+
+</html>

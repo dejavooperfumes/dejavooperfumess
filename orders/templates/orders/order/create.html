@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Your Shopping Cart| Checkout
+{% endblock %}
+
+{% block content %}
+<div class="" id="bg1">
+    <div class="page-heading header-text p-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 class=" text-uppercase fw-bold  gr float-start">Home/Order Create</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-5" id="ordercreate">
+        <div class="col-md-7" id="loginform">
+            <h4 class="page-header text-uppercase fw-bold" style="text-align:center; font-size:39px; color:#317874;">Checkout
+            </h4>
+            <form action="" method="post" class="forms signupform form-control" >
+                {% csrf_token %}
+                {{ form.as_p }}<br>
+
+
+                <input type="text" value="{{ cart.get_total_price }}" name="ordertotal" class="ordertotal" />
+
+
+                <center><button class="btn text fs-4 bo mt-3" id="bg">Submit Order & pay</button></center>
+            </form>
+        </div>
+        <div class="col-md-5">
+            <div class="page-header text-uppercase fw-bold" style="color:#317874; font-size:30px; ">
+                Your Order
+            </div>
+            <ul class="list-group" >
+                {% for item in cart %}
+                <li class="list-group-item">
+                    {{ item.quantity }}x {{ item.size.productid }} {{ item.size }} =
+                    <span>&#8377;{{ item.total_price }}</span>
+                </li>
+                {% endfor %}
+
+                <li class="list-group-item gr" id="bg-1"><span class="gr">Total Cost:  &#8377;{{cart.get_total_price}}</span></li>
+            </ul>
+
+<style>
+    .btnsearch{
+    
+    height: 37px;
+    position: absolute;
+    right: 58px;
+}
+</style>
+            <div class="row mt-2">
+                <div class="col-md-12 col-lg-12 col-sm-12 col-12  d-flex">
+                    <input type="text" id="coupontext" name="code" placeholder="Enter Code Here"
+                        class="bo form-control">
+                    <button class=" btn  text btnsearch btncoupon" id="bg">Apply Coupon</button>
+
+                </div>
+                <p></p>
+            </div>
+            <div class="row  p-3" >
+                <ul class="list-group-item form-control" >
+                    <li class="list-group-item">TOTAL COST = &#8377;<span class="carttotal">{{ cart.get_total_price }}</span></li>
+                    <li class="list-group-item">DISCOUNT = &#8377;<span class="discountapplied">0</span></li>
+                    <li class="list-group-item text" id="bg">GRAND TOTAL = &#8377;<span class="grandtotal">{{ cart.get_total_price }}</span></li>
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".signupform input").addClass("form-control");
+    });
+</script>
+
+{% endblock %}

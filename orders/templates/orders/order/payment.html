@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-6 mx-auto" style="margin-top:10%;">
+        
+        <div class="text-center" style="margin-bottom:20%;">
+        <button type="submit" id="btnpay" class="btn btn-primary">Pay Now</button>
+        </div>
+</div>
+
+<!--<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    
+var options = {
+    key: "{{razorpay_key}}",
+    amount: "{{order.amount}}", 
+    currency: "INR",
+    name: "{{order.name}}",
+    description: "Test Transaction",
+    image: "/static/2.png",
+    order_id: "{{order.provider_order_id}}",
+    callback_url: "{{callback_url}}",
+    redirect: true,
+    prefill: {
+        "name": "{{ order.name }}",
+        "email": "{{ user.email }}",
+        "contact": "{{ o1.phone }}"
+    },
+    notes: {
+        "address": "Dejavoo Perfumes"
+    },
+    theme: {
+        "color": "#3399cc"
+    }
+};
+var rzp1 = new Razorpay(options);
+document.getElementById("btnpay").onclick=function(e)
+{
+rzp1.open();
+e.preventDefault();
+}
+</script>
+-->
+
+
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,992 @@
+{%extends 'base2.html' %}
+{% load static%}
+{% block content%}
+
+<style>
+    .productname {
+        font-size: 23px;
+    }
+
+    @media only screen and (max-width: 768px) {
+
+        /* For mobile phones: */
+        .productname {
+            font-size: 10px;
+            font: bold;
+        }
+
+    }
+
+    .rate {
+        font-size: 15px;
+    }
+
+    @media only screen and (max-width: 768px) {
+
+        /* For mobile phones: */
+        .rate {
+            font-size: 8.5px;
+        }
+
+    }
+</style>
+
+
+<style>
+    .cpnCode {
+        border: 1px dashed #f7c4ab;
+        padding: 10px 20px;
+        border-right: 0;
+        height: 45px;
+
+    }
+
+    .cpnBtn {
+        border: 1px solid #f7c4ab;
+        background: #f7c4ab;
+        padding: 10px 20px;
+        color: #317874;
+        height: 45px;
+        cursor: pointer;
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: lightblue;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .coupon {
+            width: 400px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: auto;
+            filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.5));
+            display: flex;
+            align-items: stretch;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .coupon::before,
+        .coupon::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .coupon::before {
+            left: 0;
+            background-image: radial-gradient(circle at 0 50%,
+                    transparent 25px,
+                    gold 26px);
+        }
+
+        .coupon::after {
+            right: 0;
+            background-image: radial-gradient(circle at 100% 50%,
+                    transparent 25px,
+                    gold 26px);
+        }
+
+        .coupon>div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .left {
+            width: 20%;
+            border-right: 2px dashed rgba(0, 0, 0, 0.13);
+        }
+
+        .left div {
+            transform: rotate(-90deg);
+            white-space: nowrap;
+            font-weight: bold;
+        }
+
+        .center {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .right {
+            width: 120px;
+            background-image: radial-gradient(circle at 100% 50%,
+                    transparent 25px,
+                    #fff 26px);
+        }
+
+        .right div {
+            font-family: "Libre Barcode 128 Text", cursive;
+            font-size: 2.5rem;
+            font-weight: 400;
+            transform: rotate(-90deg);
+        }
+
+        .center h2 {
+            background: #000;
+            color: gold;
+            padding: 0 10px;
+            font-size: 2.15rem;
+            white-space: nowrap;
+        }
+
+        .center h3 {
+            font-size: 2.15rem;
+        }
+
+        .center small {
+            font-size: 0.625rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+        @media screen and (max-width:500px){
+  .coupon {
+    display:grid;
+    grid-template-columns:1fr;
+  }
+  .left div {
+    transform: rotate(0deg);
+  }
+  .right div {
+    transform: rotate(0deg);
+    
+  }
+}
+</style>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-body">
+                <html>
+
+                <head>
+                    <meta charset="utf-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <title> Coupon Code Web Design</title>
+                    <meta name="description" content="">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <link rel="stylesheet" href="style.css">
+                </head>
+
+                <body>
+                    <div class="container">
+                        <div class="coupon-card">
+                            <img src="{% static '3.PNG' %}" width="200PX">
+                            <button type="button" class="btn-close float-end mt-2" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                            <h3 class="text-center mt-5 gr">DEJAVOO PERFUMES</h3>
+                            <h3 class="text-center gr">GET 10% OFF USING THIS CODE</h3>
+                            <div class="coupon-row  mt-5 d-flex" style="margin-left: 95px;">
+                                <p id="myText" class="cpnCode ">DEJAVOO10</p>
+                                <button class="btn cpnBtn" onclick="copyContent()" id="bg-1">Copy Code</button>
+
+                            </div>
+
+
+                            <p class="float-end mt-2">Valid Till: 30Oct, 2023</p>
+                            <div class="circle1"></div>
+                            <div class="circle2"></div>
+                        </div>
+                    </div>
+                </body>
+
+                </html>
+
+                <p style="margin-top:70px ;">
+                    For any enquires feel free to contact us
+                    <a href="mailto:dejavooperfumes@gmail.com">Dejavooperfumes@gmail.com</a>
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let text = document.getElementById('myText').innerHTML;
+    const copyContent = async () => {
+        try {
+            await navigator.clipboard.writeText(text);
+            console.log('Content copied to clipboard');
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
+    }
+    $(document).ready(function () {
+        $("#exampleModal").modal("show");
+    });
+</script>
+<section>
+
+    <body style="padding:0px; margin:0px; background-color:#fff;font-family:arial,helvetica,sans-serif,verdana,'Open
+        Sans'">
+
+        <!-- #region Jssor Slider Begin -->
+        <!-- Generator: Jssor Slider Composer -->
+        <!-- Source: https://www.jssor.com/demos/full-width-slider.slider/=edit -->
+        <script src="{% static 'js/jssor.slider-28.1.0.min.js' %}" type="text/javascript"></script>
+        <script type="text/javascript">
+            window.jssor_1_slider_init = function () {
+
+                var jssor_1_SlideoTransitions = [
+                    [{
+                        b: -1,
+                        d: 1,
+                        ls: 0.5
+                    }, {
+                        b: 0,
+                        d: 1000,
+                        y: 5,
+                        e: {
+                            y: 6
+                        }
+                    }],
+                    [{
+                        b: -1,
+                        d: 1,
+                        ls: 0.5
+                    }, {
+                        b: 200,
+                        d: 1000,
+                        y: 25,
+                        e: {
+                            y: 6
+                        }
+                    }],
+                    [{
+                        b: -1,
+                        d: 1,
+                        ls: 0.5
+                    }, {
+                        b: 400,
+                        d: 1000,
+                        y: 45,
+                        e: {
+                            y: 6
+                        }
+                    }],
+                    [{
+                        b: -1,
+                        d: 1,
+                        ls: 0.5
+                    }, {
+                        b: 600,
+                        d: 1000,
+                        y: 65,
+                        e: {
+                            y: 6
+                        }
+                    }],
+                    [{
+                        b: -1,
+                        d: 1,
+                        ls: 0.5
+                    }, {
+                        b: 800,
+                        d: 1000,
+                        y: 85,
+                        e: {
+                            y: 6
+                        }
+                    }],
+                    [{
+                        b: -1,
+                        d: 1,
+                        ls: 0.5
+                    }, {
+                        b: 500,
+                        d: 1000,
+                        y: 195,
+                        e: {
+                            y: 6
+                        }
+                    }],
+                    [{
+                        b: 0,
+                        d: 2000,
+                        y: 30,
+                        e: {
+                            y: 3
+                        }
+                    }],
+                    [{
+                        b: -1,
+                        d: 1,
+                        rY: -15,
+                        tZ: 100
+                    }, {
+                        b: 0,
+                        d: 1500,
+                        y: 30,
+                        o: 1,
+                        e: {
+                            y: 3
+                        }
+                    }],
+                    [{
+                        b: -1,
+                        d: 1,
+                        rY: -15,
+                        tZ: -100
+                    }, {
+                        b: 0,
+                        d: 1500,
+                        y: 100,
+                        o: 0.8,
+                        e: {
+                            y: 3
+                        }
+                    }],
+                    [{
+                        b: 500,
+                        d: 1500,
+                        o: 1
+                    }],
+                    [{
+                        b: 0,
+                        d: 1000,
+                        y: 380,
+                        e: {
+                            y: 6
+                        }
+                    }],
+                    [{
+                        b: 300,
+                        d: 1000,
+                        x: 80,
+                        e: {
+                            x: 6
+                        }
+                    }],
+                    [{
+                        b: 300,
+                        d: 1000,
+                        x: 330,
+                        e: {
+                            x: 6
+                        }
+                    }],
+                    [{
+                        b: -1,
+                        d: 1,
+                        r: -110,
+                        sX: 5,
+                        sY: 5
+                    }, {
+                        b: 0,
+                        d: 2000,
+                        o: 1,
+                        r: -20,
+                        sX: 1,
+                        sY: 1,
+                        e: {
+                            o: 6,
+                            r: 6,
+                            sX: 6,
+                            sY: 6
+                        }
+                    }],
+                    [{
+                        b: 0,
+                        d: 600,
+                        x: 150,
+                        o: 0.5,
+                        e: {
+                            x: 6
+                        }
+                    }],
+                    [{
+                        b: 0,
+                        d: 600,
+                        x: 1140,
+                        o: 0.6,
+                        e: {
+                            x: 6
+                        }
+                    }],
+                    [{
+                        b: -1,
+                        d: 1,
+                        sX: 5,
+                        sY: 5
+                    }, {
+                        b: 600,
+                        d: 600,
+                        o: 1,
+                        sX: 1,
+                        sY: 1,
+                        e: {
+                            sX: 3,
+                            sY: 3
+                        }
+                    }]
+                ];
+
+                var jssor_1_options = {
+                    $AutoPlay: 1,
+                    $LazyLoading: 1,
+                    $CaptionSliderOptions: {
+                        $Class: $JssorCaptionSlideo$,
+                        $Transitions: jssor_1_SlideoTransitions
+                    },
+                    $ArrowNavigatorOptions: {
+                        $Class: $JssorArrowNavigator$
+                    },
+                    $BulletNavigatorOptions: {
+                        $Class: $JssorBulletNavigator$,
+                        $SpacingX: 20,
+                        $SpacingY: 20
+                    }
+                };
+
+                var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+                /*#region responsive code begin*/
+
+                var MAX_WIDTH = 1600;
+
+                function ScaleSlider() {
+                    var containerElement = jssor_1_slider.$Elmt.parentNode;
+                    var containerWidth = containerElement.clientWidth;
+
+                    if (containerWidth) {
+
+                        var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                        jssor_1_slider.$ScaleWidth(expectedWidth);
+                    } else {
+                        window.setTimeout(ScaleSlider, 30);
+                    }
+                }
+
+                ScaleSlider();
+
+                $Jssor$.$AddEvent(window, "load", ScaleSlider);
+                $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+                $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+                /*#endregion responsive code end*/
+            };
+        </script>
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300italic,regular,italic,700,700italic&subset=latin-ext,greek-ext,cyrillic-ext,greek,vietnamese,latin,cyrillic"
+            rel="stylesheet" type="text/css" />
+        <style>
+            /* jssor slider loading skin spin css */
+            .jssorl-009-spin img {
+                animation-name: jssorl-009-spin;
+                animation-duration: 1.6s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+
+            @keyframes jssorl-009-spin {
+                from {
+                    transform: rotate(0deg);
+                }
+
+                to {
+                    transform: rotate(360deg);
+                }
+            }
+
+
+            /*jssor slider bullet skin 132 css*/
+            .jssorb132 {
+                position: absolute;
+            }
+
+            .jssorb132 .i {
+                position: absolute;
+                cursor: pointer;
+            }
+
+            .jssorb132 .i .b {
+                fill: #fff;
+                fill-opacity: 0.8;
+                stroke: #000;
+                stroke-width: 1600;
+                stroke-miterlimit: 10;
+                stroke-opacity: 0.7;
+            }
+
+            .jssorb132 .i:hover .b {
+                fill: #000;
+                fill-opacity: .7;
+                stroke: #fff;
+                stroke-width: 2000;
+                stroke-opacity: 0.8;
+            }
+
+            .jssorb132 .iav .b {
+                fill: #000;
+                stroke: #fff;
+                stroke-width: 2400;
+                fill-opacity: 0.8;
+                stroke-opacity: 1;
+            }
+
+            .jssorb132 .i.idn {
+                opacity: 0.3;
+            }
+
+            .jssora051 {
+                display: block;
+                position: absolute;
+                cursor: pointer;
+            }
+
+            .jssora051 .a {
+                fill: none;
+                stroke: #fff;
+                stroke-width: 360;
+                stroke-miterlimit: 10;
+            }
+
+            .jssora051:hover {
+                opacity: .8;
+            }
+
+            .jssora051.jssora051dn {
+                opacity: .5;
+            }
+
+            .jssora051.jssora051ds {
+                opacity: .3;
+                pointer-events: none;
+            }
+
+            .img {
+                width: 1600px;
+                height: 560px;
+            }
+
+            @media screen and (max-width: 600px) {
+
+                /* For mobile phones: */
+                .img {
+                    width: 1600px;
+                    height: 1160px;
+                }
+            }
+        </style>
+        <svg viewbox="0 0 0 0" width="0" height="0" style="display:block;position:relative;left:0px;top:0px;">
+            <defs>
+                <filter id="jssor_1_flt_1" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stddeviation="4"></feGaussianBlur>
+                </filter>
+                <radialGradient id="jssor_1_grd_2">
+                    <stop offset="0" stop-color="#fff"></stop>
+                    <stop offset="1" stop-color="#000"></stop>
+                </radialGradient>
+                <mask id="jssor_1_msk_3">
+                    <path fill="url(#jssor_1_grd_2)" d="M600,0L600,400L0,400L0,0Z" x="0" y="0"
+                        style="position:absolute;overflow:visible;"></path>
+                </mask>
+            </defs>
+        </svg>
+        <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:0px;overflow:hidden;visibility:hidden;"
+            class="img">
+            <!-- Loading Screen -->
+            <div data-u="loading" class="jssorl-009-spin"
+                style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+                <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;"
+                    src="{% static 'img/spin.svg' %}" />
+            </div>
+            <div data-u="slides" style="cursor:default;position:relative;top:0px;left:0px;overflow:hidden;" class="img">
+                <div style="background-color:#d3890e;">
+                    <a href="/sbb"> <img data-u="image" style="opacity:0.8;" data-src="{% static 'img/JS4.JPG' %} "
+                            width="100%">
+                        <div data-ts="flat" data-p="275" data-po="40% 50%"
+                            style="left:150px;top:40px;width:800px;height:300px;position:absolute;">
+                            <div data-to="50% 50%" data-t="0"
+                                style="left:50px;top:520px;width:400px;height:100px;position:absolute;color:#ffffff; font-family:'Roboto Condensed',sans-serif;font-size:84px;font-weight:900;letter-spacing:0.5em;">
+                                INSPIRED</div>
+                            <div data-to="50% 50%" data-t="1"
+                                style="left:50px;top:540px;width:400px;height:100px;position:absolute;opacity:0.5;color:#ffffff; font-family:'Roboto Condensed',sans-serif;font-size:84px;font-weight:900;letter-spacing:0.5em;">
+                                INSPIRED</div>
+                            <div data-to="50% 50%" data-t="2"
+                                style="left:50px;top:560px;width:400px;height:100px;position:absolute;opacity:0.25;color:#ffffff; font-family:'Roboto Condensed',sans-serif;font-size:84px;font-weight:900;letter-spacing:0.5em;">
+                                INSPIRED</div>
+                            <div data-to="50% 50%" data-t="3"
+                                style="left:50px;top:580px;width:400px;height:100px;position:absolute;opacity:0.125;color:#ffffff; font-family:'Roboto Condensed',sans-serif;font-size:84px;font-weight:900;letter-spacing:0.5em;">
+                                INSPIRED</div>
+                            <div data-to="50% 50%" data-t="4"
+                                style="left:50px;top:600px;width:400px;height:100px;position:absolute;opacity:0.06;color:#f0a329; font-family:'Roboto Condensed',sans-serif;font-size:84px;font-weight:900;letter-spacing:0.5em;">
+                                INSPIRED</div>
+                            <div data-to="50% 50%" data-t="5"
+                                style="left:50px;top:710px;width:700px;height:100px;position:absolute;color:#ffffff; font-family:'Roboto Condensed',sans-serif;font-size:84px;font-weight:900;letter-spacing:0.5em;">
+                                VERSIONS</div>
+                        </div>
+                </div></a>
+                <div>
+                    <a href="/ori"> <img data-u="image" data-src="{% static 'img/js5.jpg' %}">
+                        <div data-ts="flat" data-p="540" data-po="40% 50%"
+                            style="left:0px;top:0px;width:1600px;height:560px;position:absolute;">
+                            <div data-to="50% 50%" data-ts="preserve-3d" data-t="6"
+                                style="left:350px;top:360px;width:900px;height:500px;position:absolute;">
+                                <svg viewbox="0 0 800 60" data-to="50% 50%" width="800" height="60" data-t="7"
+                                    style="left:0px;top:-70px;display:block;position:absolute;opacity:0;font-family:'Roboto Condensed',sans-serif;font-size:60px;font-weight:700;letter-spacing:0.05em;overflow:visible;">
+                                    <text fill="#ffffff" text-anchor="middle" x="400" y="60">EXOTIC
+                                    </text>
+                                </svg>
+                                <div data-to="50% 50%" data-t="8"
+                                    style="filter:url('#jssor_1_flt_1');left:200px;top:0px;width:600px;height:60px;position:absolute;opacity:0;color:#C49D8F;font-family:Roboto Condensed, sans-serif;font-size:48px;line-height:1.2;letter-spacing:0.1em;text-align:center;">
+                                    FOR STYLISH LIFE</div>
+                                <svg viewbox="0 0 800 100" width="800" height="100" data-t="9"
+                                    style="left:40px;top:250px;display:block;position:absolute;opacity:0;font-family:'Roboto Condensed',sans-serif;font-size:100px;font-weight:900;letter-spacing:0.5em;overflow:visible;">
+                                    <text fill="rgba(255,255,255,0.7)" stroke="#317874" text-anchor="middle" x="400"
+                                        y="100">ATTARS
+                                    </text>
+                                </svg>
+                                <img data-to="50% 50%" data-t="16"
+                                    style="left:1030px;top:8px;width:172px;height:131px;position:absolute;opacity:0;max-width:172px;"
+                                    data-src="{% static '2.PNG' %}">
+
+                            </div>
+                        </div>
+                </div></a>
+                <div style="background-color:#000000;">
+                    <a href="/luxury"> <img data-u="image" style="opacity:0.8;" data-src="{% static 'img/js2.jpg' %}">
+                        <div data-ts="flat" data-p="1080"
+                            style="left:0px;top:0px;width:1600px;height:560px;position:absolute;">
+                            <svg viewbox="0 0 600 400" data-ts="preserve-3d" width="600" height="400"
+                                data-tchd="jssor_1_msk_3"
+                                style="left:255px;top:0px;display:block;position:absolute;overflow:visible;">
+                                <g mask="url(#jssor_1_msk_3)">
+                                    <path data-to="300px -180px" fill="none" stroke="#f7c4ab" stroke-width="20"
+                                        d="M410-350L410-10L190-10L190-350Z" x="190" y="-350" data-t="10"
+                                        style="position:absolute;overflow:visible;"></path>
+                                </g>
+                            </svg>
+                            <svg viewbox="0 0 800 72" data-to="50% 50%" width="800" height="72" data-t="11"
+                                style="left:-800px;top:78px;display:block;position:absolute;font-family:'Roboto Condensed',sans-serif;font-size:84px;font-weight:900;overflow:visible;">
+                                <text fill="#fafbfc" stroke="#317874" text-anchor="middle" x="400" y="72">UNLEASH
+                                    THE
+                                </text>
+                            </svg>
+                            <svg viewbox="0 0 800 72" data-to="50% 50%" width="800" height="72" data-t="12"
+                                style="left:1600px;top:153px;display:block;position:absolute;font-family:'Roboto Condensed',sans-serif;font-size:60px;font-weight:900;overflow:visible;">
+                                <text fill="#fafbfc" stroke="#317874" text-anchor="middle" x="400" y="72">LUXURY
+                                    AROMA'S
+                                </text>
+                            </svg>
+                        </div>
+                </div></a>
+                <div>
+                    <img data-u="image" data-src="{% static 'img/js.jpg' %}">
+                    <div data-to="50% 50%" data-t="14"
+                        style="left:400px;top:140px;width:600px;height:150px;position:absolute;opacity:0;color:#ffffff;font-family:Georgia,'Times New Roman',Times,serif;font-size:60px;line-height:1.2;letter-spacing:0.1em;">
+                        EXPERIENCE THE MAGIC <br />OF DEJAVOO PERFUMES.</div>
+
+                </div>
+                <div><a href="/sbc">
+                        <img data-u="image" data-src="{% static 'img/js3.jpg' %}">
+                        <div data-ts="flat" data-p="1080"
+                            style="left:0px;top:0px;width:1600px;height:560px;position:absolute;">
+                            <img data-to="50% 50%" data-t="15"
+                                style="left:780px;top:350px;width:344px;height:157px;position:absolute;opacity:0;max-width:344px;"
+                                data-src="{% static 'img/wine-atlantic-ocean.png'%}" />
+                            <img data-to="50% 50%" data-t="16"
+                                style="left:1330px;top:8px;width:172px;height:131px;position:absolute;opacity:0;max-width:172px;"
+                                data-src="{% static '2.PNG' %}" />
+                        </div>
+                </div></a>
+
+            </div><a data-scale="0" href="https://www.jssor.com" style="display:none;position:absolute;">slider
+                html</a>
+            <!-- Bullet Navigator -->
+            <div data-u="navigator" class="jssorb132" style="position:absolute;bottom:24px;right:16px;"
+                data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+                <div data-u="prototype" class="i" style="width:12px;height:12px;">
+                    <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                        <circle class="b" cx="8000" cy="8000" r="5800"></circle>
+                    </svg>
+                </div>
+            </div>
+            <!-- Arrow Navigator -->
+            <div data-u="arrowleft" class="jssora051" style="width:55px;height:55px;top:0px;left:25px;"
+                data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <polyline class="a" points="11040,1920 4960,8000 11040,14080 "></polyline>
+                </svg>
+            </div>
+            <div data-u="arrowright" class="jssora051" style="width:55px;height:55px;top:0px;right:25px;"
+                data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <polyline class="a" points="4960,1920 11040,8000 4960,14080 "></polyline>
+                </svg>
+            </div>
+        </div>
+        <script type="text/javascript">
+            jssor_1_slider_init();
+        </script>
+        <!-- #endregion Jssor Slider End -->
+    </body>
+</section>
+
+
+<section>
+    <div class="row mt-2" id="bg">
+        <div data-aos="fade-down">
+            <h1 class="text-center text">TOP RATED PERFUMES</h1>
+        </div>
+    </div>
+    <div class="row mt-2 " data-aos="fade-up" id="luxury">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="row" id="homepageproducts">
+                {% for pro in e %}
+                <div class="col-lg-4 col-md-4 col-sm-6 col-6 mb-4">
+                    <a href="/productdetail/{{ pro.id }}/{{ pro.brandid_id }}" class="text-decoration-none text-dark">
+
+                        <div class="col  border-dark card p-3" style="border-radius: 10%;">
+                            <div class="text-center">
+                                <img src="/media/{{ pro.photo2 }}" style="border-radius: 10%;">
+                            </div>
+                            <h5 class="productname fw-bold mt-3" style="margin-bottom: -10px; ">{{ pro.name}}</h5>
+                            <ul class="nav-link" style="margin-left:-14px;">
+                                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:10px;"></i>
+                                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:10px;"></i>
+                                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:10px;"></i>
+                                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:10px;"></i>
+                                <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b; font-size:10px;"></i>
+                            </ul>
+                            <h4><span class="gr">&#8377;{{ pro.sellingprice }}</span><span
+                                    class="text-decoration-line-through ps-2 rate">&#8377;{{ pro.mrp }}</span> </h4>
+
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+
+<section>
+    <div class="row mt-2" id="bg-1">
+        <div data-aos="fade-down">
+            <h1 class="text-center gr">OUR LUXURY SECTION</h1>
+        </div>
+    </div>
+    <div class="row mt-2" id="luxury">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="row " data-aos="fade-up" id="homepageproducts">
+                {% for pro in l %}
+                <div class="col-lg-4 col-md-4 col-sm-6 col-6 mb-4">
+                    <a href="/productdetail/{{ pro.id }}/{{ pro.brandid_id }}" class="text-decoration-none text-dark">
+                        <div class="col  border-dark card p-3" style="border-radius: 10%;">
+                            <img src="/media/{{ pro.photo2 }}" style="border-radius: 10%;">
+                            <h5 class="productname fw-bold mt-3" style="margin-bottom: -10px;">{{ pro.name}}</h5>
+                            <ul class="nav-link" style="margin-left:-14px;">
+                                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:10px;"></i>
+                                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:10px;"></i>
+                                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:10px;"></i>
+                                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:10px;"></i>
+                                <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b; font-size:10px;"></i>
+                            </ul>
+                            <h4><span class="gr">&#8377;{{ pro.sellingprice }}</span><span
+                                    class="text-decoration-line-through ps-2 rate">&#8377;{{ pro.mrp }}</span> </h4>
+
+                        </div>
+                    </a>
+
+                </div>
+                {% endfor %}
+
+
+
+            </div>
+        </div>
+        <a href="/luxury">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-12 offset-lg-4 mb-4" style=" margin-top: -350px;">
+                <button class=" btn text-light border-dark p-2 mx-5 " style="margin-top: 390px;" id="bg-1">INDULGE IN
+                    LUXURY WITH JUST ONE CLICK</button>
+        </a>
+
+
+    </div>
+    </div>
+</section>
+
+<section>
+    <div class="row" id="bg">
+        <div data-aos="fade-down">
+            <h1 class="text-center text">THIS IS HOW WE HANDMADE THE PERFUMES</h1>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-12 p-2 ">
+        <iframe width="100%" height="250" src="{% static 'LIVE1.mp4' %}"></iframe>
+    </div>
+</section>
+<section class="bg-white">
+    <div class="row" id="bg-1">
+        <div data-aos="fade-down">
+            <h1 class="text-center gr">OUR PERFUMES ARE FAMOUS FOR</h1>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="row p-3">
+
+                <div class="col-lg-3 col-md-2 col-sm-2 col-6" data-aos="flip-up">
+                    <div class="col   card mb-1" id="bg">
+                        <img src="{% static '1long.jpg' %}" width="100%" class="p-2">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-2 col-6 " data-aos="flip-down">
+                    <div class="col   card mb-1" id="bg-1">
+                        <img src="{% static 'pure.jpg' %}" width="100%" class="p-2">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-2 col-6" data-aos="flip-up">
+                    <div class="col   card " id="bg">
+                        <img src="{% static 'born.jpg' %}" width="100%" class="p-2">
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-2 col-sm-2 col-6" data-aos="flip-down">
+                    <div class="col   card " id="bg-1">
+                        <img src="{% static 'oil.jpg' %}" width="100%" class="p-2">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</section>
+
+
+
+
+
+<section>
+    <div class="row" id="bg">
+        <div data-aos="fade-down">
+            <h1 class="text-center text">REVIEWS</h1>
+        </div>
+    </div>
+    <h1 class="text-center gr stroke" data-aos="fade-down">What People are saying</h1>
+    <P class="text-center"></P>
+    <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+            <div class="row">
+                <div class="col-md-4 p-2">
+                    <div class="card border-dark  " style="height: 350px; border-radius: 10%;">
+                        <div Class="d-flex justify-content-center">
+                            <img src="{% static '2.PNG' %}" width="80px" height="80px" class="rounded-circle mt-3 ">
+                        </div>
+                        <p class="fw-bold text-center mt-2">ANANYA</p>
+                        <div Class="nav d-flex justify-content-center">
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                        </div>
+                        <p Class="text-center  p-2">Being a perfume lover i can say that without any doubt that is
+                            the
+                            best one I have ever used .Smells heavenly and lasts for hours .
+                            Smells expensive but is actually very affordable. In love with it
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="col-md-4 p-2">
+                    <div class="card border-dark " style="height: 350px; border-radius: 10%;">
+                        <div Class="d-flex justify-content-center">
+                            <img src="{% static '2.PNG' %}" width="80px" height="80px" class="rounded-circle mt-3 ">
+                        </div>
+                        <p class="fw-bold text-center mt-2">JASHAN</p>
+                        <div Class="nav d-flex justify-content-center">
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                        </div>
+                        <p Class="text-center  p-2">Dejavoo is offering a large variety of perfumes offering great
+                            quality and lasting tried few of them and lasts really long will be buying more and best
+                            part about these perfumes they are freshly made and prices are extremely affordable for
+                            all
+                            with high quality
+                            Loving the fragnances
+                    </div>
+                </div>
+                <div class="col-md-4 p-2">
+                    <div class="card border-dark " style="height: 350px; border-radius: 10%;">
+                        <div Class="d-flex justify-content-center">
+                            <img src="{% static '2.PNG' %}" width="80px" height="80px" class="rounded-circle mt-3 ">
+                        </div>
+                        <p class="fw-bold text-center mt-2">NEHA</p>
+                        <div Class="nav d-flex justify-content-center">
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                            <i class="fa-solid fa-star nav-link" style="color: #f5e105;"></i>
+                        </div>
+                        <p Class="text-center  p-2">Being a perfume lover i can say that without any doubt that is
+                            the
+                            best one I have ever used .Smells heavenly and lasts for hours .
+                            Smells expensive but is actually very affordable. In love with it</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+<section>
+    <div class="row" id="bg-1">
+        <div data-aos="fade-down">
+            <h1 class="text-center gr">HOW TO USE THE PERFUMES</h1>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-6 col-lg-6 col-sm-6 col-12  text-center p-3 " data-aos="fade-up">
+            <iframe width="100%" height="300px" src="https://www.youtube.com/embed/LA753bL1smc"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-6 col-12  text-center p-3" data-aos="fade-up">
+            <iframe width="100%" height="300" src="https://www.youtube.com/embed/4WE91fosXy4"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+
+</section>
+{%endblock%}

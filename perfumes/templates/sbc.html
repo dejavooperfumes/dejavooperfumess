@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="">
+    <div class="row bg-" >
+        <div class="col-lg-10 offset-lg-1">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-1" >
+                    <div class="col  border-dark card p-2 ">
+                        <a href="/men">
+                            <div>
+                                <img src="{% static 'MEN .JPG' %}" width="100%" class="rounded-3" >
+                            </div>
+                            <button class="btn btn-dark bg-dark fw-bold gr rounded-3 mt-1" style="width: 100%;">MEN'S</button>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-1">
+                    <div class="col  border-dark card p-2">
+                        <a href="/unisex">
+                            <img src="{% static 'unisex1.JPG' %}" width="100%"  class="rounded-3">
+                            <button class="btn btn-dark bg-dark fw-bold text rounded-3 mt-1" style="width: 100%;" >UNISEX</button>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-1">
+                    <div class="col  border-dark card p-2">
+                        <a href="/women">
+                            <img src="{% static 'WOMEN.JPG' %}" width="100%"  class="rounded-3">
+                            <button class="btn btn-dark bg-dark fw-bold gr rounded-3 mt-1" style="width: 100%;" >WOMEN'S</button>
+                        </a>
+                    </div>
+                </div>
+                
+
+
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock%}

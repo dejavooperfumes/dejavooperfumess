@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+.cpnCode {
+        border: 1px dashed #f7c4ab;
+        padding: 10px 20px;
+        border-right: 0;
+        height: 45px;
+
+    }
+
+.cpnBtn {
+        border: 1px solid #f7c4ab;
+        background: #f7c4ab;
+        padding: 10px 20px;
+        color: #317874;
+        height: 45px;
+        cursor: pointer;
+</style>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    DISCOUNT COUPON
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-white">
+            
+            <div class="modal-body">
+                <html>
+
+                <head>
+                    <meta charset="utf-8">
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+                    <title> Coupon Code Web Design</title>
+                    <meta name="description" content="">
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <link rel="stylesheet" href="style.css">
+                </head>
+
+                <body>
+                    <div class="container">
+                        <div class="coupon-card">
+                            <img src="{% static '3.PNG' %}" width="200PX">
+                <button type="button" class="btn-close float-end mt-2" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h3 class="text-center mt-5 gr">DEJAVOO PERFUMES</h3>
+                            <h3 class="text-center gr">GET 10% OFF USING THIS CODE</h3>
+                            <div class="coupon-row  mt-5 d-flex" style="margin-left: 95px;"  >
+                            <p id="myText" class="cpnCode ">DEJAVOO10</p>
+                            <button class="btn cpnBtn" onclick="copyContent()" id="bg-1" >Copy Code</button>
+
+                            </div>
+                            
+
+                            <p class="float-end mt-2">Valid Till: 30Oct, 2023</p>
+                            <div class="circle1"></div>
+                            <div class="circle2"></div>
+                        </div>
+                    </div>
+                </body>
+
+                </html>
+
+                <p style="margin-top:70px ;">
+                    For any enquires feel free to contact us
+                    <a href="mailto:dejavooperfumes@gmail.com">Dejavooperfumes@gmail.com</a>
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let text = document.getElementById('myText').innerHTML;
+    const copyContent = async () => {
+        try {
+            await navigator.clipboard.writeText(text);
+            console.log('Content copied to clipboard');
+        } catch (err) {
+            console.error('Failed to copy: ', err);
+        }
+    }
+    $(document).ready(function(){
+        $("#exampleModal").modal("show");
+    });
+</script>
+{% endblock %}

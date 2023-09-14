@@ -1,0 +1,712 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<section>
+    <div class="row bg-WHITE " id="luxury">
+        <div class="col-md-10 offset-lg-1" id="homepageproducts">
+            <div class="row ">
+                {% for pro in d %}
+                <div class="col-lg-4 col-md-4 col-sm-6 col-6 mb-4">
+                    <a href="/productdetail/{{ pro.id }}/{{ pro.brandid_id }}" class="text-decoration-none text-dark" data-aos="fade-left">
+                    <div class="col  border-dark card p-3" style="border-radius: 10%;">
+                        <div class="text-center">
+                            <img src="/media/{{ pro.photo2 }}" width="100%"style="border-radius: 10%;">
+                        </div>
+                        <h5>{{ pro.name }}</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:small;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:small;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:small;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b; font-size:small;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b; font-size:small;"></i>
+                        </ul>
+                        <h4><span class="gr">&#8377;{{ pro.sellingprice }}</span><span class="text-decoration-line-through ps-2">&#8377;{{ pro.mrp }}</span> </h4>
+
+                        <!-- <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button> -->
+
+                    </div>
+                </a>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'JASMINE.jpg' %}" width="100%">
+                        </div>
+                        <h5>Chameli</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'RAATRAANI.jpg' %}" width="100%">
+                        </div>
+                        <h5>Raat Rani</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'JASMINE.jpg' %}" width="100%">
+                        </div>
+                        <h5>Mogra</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'KEWDAA.jpg' %}" width="100%">
+                        </div>
+                        <h5>Kewda</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'SANDAL.jpg' %}" width="100%">
+                        </div>
+                        <h5>Mysore Sandal</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'REALAMBER.jpg' %}" width="100%">
+                        </div>
+                        <h5>kasturi</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'Ori2.jpg' %}" width="100%">
+                        </div>
+                        <h5>Rajnigandha</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'WHITEOUD.jpg' %}" width="100%">
+                        </div>
+                        <h5>Jannataul Firdaus</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'KESAR.jpg' %}" width="100%">
+                        </div>
+                        <h5>Kesar Chandan</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'KESAR.jpg' %}" width="100%">
+                        </div>
+                        <h5>Mitti</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'SANDAL.jpg' %}" width="100%">
+                        </div>
+                        <h5>Sandalwood</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'WHITEOUD.jpg' %}" width="100%">
+                        </div>
+                        <h5>Majmua</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'GREENAPPLE.jpg' %}" width="100%">
+                        </div>
+                        <h5>Green Apple</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'WHITEOUD.jpg' %}" width="100%">
+                        </div>
+                        <h5>White Oud</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'orI2.jpg' %}" width="100%">
+                        </div>
+                        <h5>Choco Musk</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'SAFFRON.jpg' %}" width="100%">
+                        </div>
+                        <h5>Spain Saffron</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'TULSICHANDAN.jpg' %}" width="100%">
+                        </div>
+                        <h5>Tulsi Chandan</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'REALAMBER.jpg' %}" width="100%">
+                        </div>
+                        <h5>Real Amber</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'LAVENDER.jpg' %}" width="100%">
+                        </div>
+                        <h5>Lavender</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'KHUS.jpg' %}" width="100%">
+                        </div>
+                        <h5>Heena</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'ORI2.jpg' %}" width="100%">
+                        </div>
+                        <h5>Fantasia</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'ORI2.jpg' %}" width="100%">
+                        </div>
+                        <h5>Chocolate</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'ATTARPHOOL.jpg' %}" width="100%">
+                        </div>
+                        <h5>Gul Shamama</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'ATTARPHOOL.jpg' %}" width="100%">
+                        </div>
+                        <h5>Attar Phool</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'KHUS.jpg' %}" width="100%">
+                        </div>
+                        <h5>Khus</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'RAATRAANI.jpg' %}" width="100%">
+                        </div>
+                        <h5>Vanilla</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'BELA.jpg' %}" width="100%">
+                        </div>
+                        <h5>Bela</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'MUSK.jpg' %}" width="100%">
+                        </div>
+                        <h5>Mukhallat</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'COFFEE.jpg' %}" width="100%">
+                        </div>
+                        <h5>coffee</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'Patchouli .jpg' %}" width="100%">
+                        </div>
+                        <h5>Patchouli</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'MUSK.jpg' %}" width="100%">
+                        </div>
+                        <h5>Musk Rizali</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'ROSE.jpg' %}" width="100%">
+                        </div>
+                        <h5>Rose Musk</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-3 col-sm-6 col-6">
+                    <div class="col  border-dark card p-3">
+                        <div class="text-center">
+                            <img src="{% static 'JASMINE.jpg' %}" width="100%">
+                        </div>
+                        <h5>Jasmine</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <button class="btn bg-dark text fw-bold rounded-3 ">BUY NOW</button>
+                        <button class="btn btn-dark bg-light fw-bold gr rounded-3">ADD TO CART</button>
+
+
+                    </div>
+                </div> -->
+
+
+            </div>
+        </div>
+
+
+</section>
+
+
+
+
+
+
+
+
+{%endblock%}

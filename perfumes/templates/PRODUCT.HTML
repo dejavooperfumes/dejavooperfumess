@@ -1,0 +1,953 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .pd-wrap {
+        padding: 40px 0;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .heading-section {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .sub-heading {
+        font-family: 'Poppins', sans-serif;
+        font-size: 12px;
+        display: block;
+        font-weight: 600;
+        color: #2e9ca1;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .heading-section h2 {
+        font-size: 32px;
+        font-weight: 500;
+        padding-top: 10px;
+        padding-bottom: 15px;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .user-img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        position: relative;
+        min-width: 80px;
+        background-size: 100%;
+    }
+
+    .carousel-testimonial .item {
+        padding: 30px 10px;
+    }
+
+    .quote {
+        position: absolute;
+        top: -23px;
+        color: #2e9da1;
+        font-size: 27px;
+    }
+
+    .name {
+        margin-bottom: 0;
+        line-height: 14px;
+        font-size: 17px;
+        font-weight: 500;
+    }
+
+    .position {
+        color: #adadad;
+        font-size: 14px;
+    }
+
+    .owl-nav button {
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%);
+        outline: none;
+        height: 25px;
+    }
+
+    .owl-nav button svg {
+        width: 25px;
+        height: 25px;
+    }
+
+    .owl-nav button.owl-prev {
+        left: 25px;
+    }
+
+    .owl-nav button.owl-next {
+        right: 25px;
+    }
+
+    .owl-nav button span {
+        font-size: 45px;
+    }
+
+    .product-thumb .item img {
+        height: 100px;
+    }
+
+    .product-name {
+        font-size: 22px;
+        font-weight: 500;
+        line-height: 22px;
+        margin-bottom: 4px;
+    }
+
+    .product-price-discount {
+        font-size: 22px;
+        font-weight: 400;
+        padding: 10px 0;
+        clear: both;
+    }
+
+    .product-price-discount span.line-through {
+        text-decoration: line-through;
+        margin-left: 10px;
+        font-size: 14px;
+        vertical-align: middle;
+        color: #a5a5a5;
+    }
+
+    .display-flex {
+        display: flex;
+    }
+
+    .align-center {
+        align-items: center;
+    }
+
+    .product-info {
+        width: 100%;
+    }
+
+    .reviews-counter {
+        font-size: 13px;
+    }
+
+    .reviews-counter span {
+        vertical-align: -2px;
+    }
+
+    .rate {
+        float: left;
+        padding: 0 10px 0 0;
+    }
+
+    .rate:not(:checked)>input {
+        position: absolute;
+        top: -9999px;
+    }
+
+    .rate:not(:checked)>label {
+        float: right;
+        width: 15px;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 15px;
+        color: #ccc;
+        margin-bottom: 0;
+        line-height: 21px;
+    }
+
+    .rate:not(:checked)>label:before {
+        content: '\2605';
+    }
+
+    .rate>input:checked~label {
+        color: #ffc700;
+    }
+
+    .rate:not(:checked)>label:hover,
+    .rate:not(:checked)>label:hover~label {
+        color: #deb217;
+    }
+
+    .rate>input:checked+label:hover,
+    .rate>input:checked+label:hover~label,
+    .rate>input:checked~label:hover,
+    .rate>input:checked~label:hover~label,
+    .rate>label:hover~input:checked~label {
+        color: #c59b08;
+    }
+
+    .product-dtl p {
+        font-size: 14px;
+        line-height: 24px;
+        color: #7a7a7a;
+    }
+
+    .product-dtl .form-control {
+        font-size: 15px;
+    }
+
+    .product-dtl label {
+        line-height: 16px;
+        font-size: 15px;
+    }
+
+    .form-control:focus {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .product-count {
+        margin-top: 15px;
+    }
+
+    .product-count .qtyminus,
+    .product-count .qtyplus {
+        width: 34px;
+        height: 34px;
+        background: #212529;
+        text-align: center;
+        font-size: 19px;
+        line-height: 36px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .product-count .qtyminus {
+        border-radius: 3px 0 0 3px;
+    }
+
+    .product-count .qtyplus {
+        border-radius: 0 3px 3px 0;
+    }
+
+    .product-count .qty {
+        width: 60px;
+        text-align: center;
+    }
+
+    .round-black-btn {
+        border-radius: 4px;
+        background: #212529;
+        color: #fff;
+        padding: 7px 45px;
+        display: inline-block;
+        margin-top: 20px;
+        border: solid 2px #212529;
+        transition: all 0.5s ease-in-out 0s;
+    }
+
+    .round-black-btn:hover,
+    .round-black-btn:focus {
+        background: transparent;
+        color: #212529;
+        text-decoration: none;
+    }
+
+    .product-info-tabs {
+        margin-top: 25px;
+    }
+
+    .product-info-tabs .nav-tabs {
+        border-bottom: 2px solid #d8d8d8;
+    }
+
+    .product-info-tabs .nav-tabs .nav-item {
+        margin-bottom: 0;
+    }
+
+    .product-info-tabs .nav-tabs .nav-link {
+        border: none;
+        border-bottom: 2px solid transparent;
+        color: #323232;
+    }
+
+    .product-info-tabs .nav-tabs .nav-item .nav-link:hover {
+        border: none;
+    }
+
+    .product-info-tabs .nav-tabs .nav-item.show .nav-link,
+    .product-info-tabs .nav-tabs .nav-link.active,
+    .product-info-tabs .nav-tabs .nav-link.active:hover {
+        border: none;
+        border-bottom: 2px solid #d8d8d8;
+        font-weight: bold;
+    }
+
+    .product-info-tabs .tab-content .tab-pane {
+        padding: 30px 20px;
+        font-size: 15px;
+        line-height: 24px;
+        color: #7a7a7a;
+    }
+
+    .review-form .form-group {
+        clear: both;
+    }
+
+    .mb-20 {
+        margin-bottom: 20px;
+    }
+
+    .review-form .rate {
+        float: none;
+        display: inline-block;
+    }
+
+    .review-heading {
+        font-size: 24px;
+        font-weight: 600;
+        line-height: 24px;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        color: #000;
+    }
+
+    .review-form .form-control {
+        font-size: 14px;
+    }
+
+    .review-form input.form-control {
+        height: 40px;
+    }
+
+    .review-form textarea.form-control {
+        resize: none;
+    }
+
+    .review-form .round-black-btn {
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+</style>
+<!--Important link from https://bootsnipp.com/snippets/XqvZr-->
+
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+<link rel="stylesheet" type="text/css"
+    href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+<div class="pd-wrap">
+    <div class="container">
+        <div class="heading-section">
+            <!-- <h2>Product Details</h2> -->
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-sm-6  col-12 ">
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title></title>
+                </head>
+                <body style="padding:0px; margin:0px; background-color:#fff;font-family:arial,helvetica,sans-serif,verdana,'Open Sans'">
+
+                    <!-- #region Jssor Slider Begin -->
+                    <!-- Generator: Jssor Slider Composer -->
+                    <!-- Source: https://www.jssor.com/demos/image-gallery.slider/=edit -->
+                    <script src="{% static 'js/jssor.slider-28.1.0.min.js' %}" type="text/javascript"></script>
+                    <script type="text/javascript">
+                        window.jssor_1_slider_init = function() {
+
+                            var jssor_1_SlideshowTransitions = [
+                              {$Duration:800,x:0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,x:-0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,x:-0.3,$During:{$Left:[0.3,0.7]},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,x:0.3,$SlideOut:true,$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,y:0.3,$During:{$Top:[0.3,0.7]},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,y:-0.3,$SlideOut:true,$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,y:-0.3,$During:{$Top:[0.3,0.7]},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,y:0.3,$SlideOut:true,$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,x:0.3,$Cols:2,$During:{$Left:[0.3,0.7]},$ChessMode:{$Column:3},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,x:0.3,$Cols:2,$SlideOut:true,$ChessMode:{$Column:3},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,y:0.3,$Rows:2,$During:{$Top:[0.3,0.7]},$ChessMode:{$Row:12},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,y:0.3,$Rows:2,$SlideOut:true,$ChessMode:{$Row:12},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,y:0.3,$Cols:2,$During:{$Top:[0.3,0.7]},$ChessMode:{$Column:12},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,y:-0.3,$Cols:2,$SlideOut:true,$ChessMode:{$Column:12},$Easing:{$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,x:0.3,$Rows:2,$During:{$Left:[0.3,0.7]},$ChessMode:{$Row:3},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,x:-0.3,$Rows:2,$SlideOut:true,$ChessMode:{$Row:3},$Easing:{$Left:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,x:0.3,y:0.3,$Cols:2,$Rows:2,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$Jease$.$InCubic,$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,x:0.3,y:0.3,$Cols:2,$Rows:2,$During:{$Left:[0.3,0.7],$Top:[0.3,0.7]},$SlideOut:true,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$Jease$.$InCubic,$Top:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,$Delay:20,$Clip:3,$Assembly:260,$Easing:{$Clip:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,$Delay:20,$Clip:3,$SlideOut:true,$Assembly:260,$Easing:{$Clip:$Jease$.$OutCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,$Delay:20,$Clip:12,$Assembly:260,$Easing:{$Clip:$Jease$.$InCubic,$Opacity:$Jease$.$Linear},$Opacity:2},
+                              {$Duration:800,$Delay:20,$Clip:12,$SlideOut:true,$Assembly:260,$Easing:{$Clip:$Jease$.$OutCubic,$Opacity:$Jease$.$Linear},$Opacity:2}
+                            ];
+
+                            var jssor_1_options = {
+                              $AutoPlay: 1,
+                              $SlideshowOptions: {
+                                $Class: $JssorSlideshowRunner$,
+                                $Transitions: jssor_1_SlideshowTransitions,
+                                $TransitionsOrder: 1
+                              },
+                              $ArrowNavigatorOptions: {
+                                $Class: $JssorArrowNavigator$
+                              },
+                              $ThumbnailNavigatorOptions: {
+                                $Class: $JssorThumbnailNavigator$,
+                                $SpacingX: 5,
+                                $SpacingY: 5
+                              }
+                            };
+
+                            var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
+
+                            /*#region responsive code begin*/
+
+                            var MAX_WIDTH = 980;
+
+                            function ScaleSlider() {
+                                var containerElement = jssor_1_slider.$Elmt.parentNode;
+                                var containerWidth = containerElement.clientWidth;
+
+                                if (containerWidth) {
+
+                                    var expectedWidth = Math.min(MAX_WIDTH || containerWidth, containerWidth);
+
+                                    jssor_1_slider.$ScaleWidth(expectedWidth);
+                                }
+                                else {
+                                    window.setTimeout(ScaleSlider, 30);
+                                }
+                            }
+
+                            ScaleSlider();
+
+                            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+                            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+                            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+                            /*#endregion responsive code end*/
+                        };
+                    </script>
+                    <style>
+                        /*jssor slider loading skin spin css*/
+                        .jssorl-009-spin img {
+                            animation-name: jssorl-009-spin;
+                            animation-duration: 1.6s;
+                            animation-iteration-count: infinite;
+                            animation-timing-function: linear;
+                        }
+
+                        @keyframes jssorl-009-spin {
+                            from { transform: rotate(0deg); }
+                            to { transform: rotate(360deg); }
+                        }
+
+                        /*jssor slider arrow skin 106 css*/
+                        .jssora106 {display:block;position:absolute;cursor:pointer;}
+                        .jssora106 .c {fill:#fff;opacity:.3;}
+                        .jssora106 .a {fill:none;stroke:#000;stroke-width:350;stroke-miterlimit:10;}
+                        .jssora106:hover .c {opacity:.5;}
+                        .jssora106:hover .a {opacity:.8;}
+                        .jssora106.jssora106dn .c {opacity:.2;}
+                        .jssora106.jssora106dn .a {opacity:1;}
+                        .jssora106.jssora106ds {opacity:.3;pointer-events:none;}
+
+                        /*jssor slider thumbnail skin 101 css*/
+                        .jssort101 .p {position: absolute;top:0;left:0;box-sizing:border-box;background:#000;}
+                        .jssort101 .p .cv {position:relative;top:0;left:0;width:100%;height:100%;border:2px solid #000;box-sizing:border-box;z-index:1;}
+                        .jssort101 .a {fill:none;stroke:#fff;stroke-width:400;stroke-miterlimit:10;visibility:hidden;}
+                        .jssort101 .p:hover .cv, .jssort101 .p.pdn .cv {border:none;border-color:transparent;}
+                        .jssort101 .p:hover{padding:2px;}
+                        .jssort101 .p:hover .cv {background-color:rgba(0,0,0,6);opacity:.35;}
+                        .jssort101 .p:hover.pdn{padding:0;}
+                        .jssort101 .p:hover.pdn .cv {border:2px solid #fff;background:none;opacity:.35;}
+                        .jssort101 .pav .cv {border-color:#fff;opacity:.35;}
+                        .jssort101 .pav .a, .jssort101 .p:hover .a {visibility:visible;}
+                        .jssort101 .t {position:absolute;top:0;left:0;width:100%;height:100%;border:none;opacity:.6;}
+                        .jssort101 .pav .t, .jssort101 .p:hover .t{opacity:1;}
+                    </style>
+                    <div id="jssor_1" style="position:relative;margin:0 auto;top:0px;left:-12px; width:980px;height:600px;overflow:hidden;visibility:hidden;">
+                        <!-- Loading Screen -->
+                        <div data-u="loading" class="jssorl-009-spin" style="position:absolute;top:0px;left:0px;width:100%;height:100%;text-align:center;background-color:rgba(0,0,0,0.7);">
+                            <img style="margin-top:-19px;position:relative;top:50%;width:38px;height:38px;" src="img/spin.svg" />
+                        </div>
+                        <div data-u="slides" style="cursor:default;position:relative;top:-24px;left:0px;width:980px;height:600px;overflow:hidden;">
+                            <div>
+                                <img data-u="image" src="/media/{{ p.photo1 }}" />
+                                <img data-u="thumb" src="/media/{{ p.photo1 }}" />
+                            </div>
+                            <div>
+                                <img data-u="image" src="/media/{{ p.photo2 }}"/>
+                                <img data-u="thumb" src="/media/{{ p.photo2 }}" />
+                            </div>
+                            <div>
+                                <img data-u="image" src="/media/{{ p.photo3 }}" />
+                                <img data-u="thumb" src="/media/{{ p.photo3 }}" />
+                            </div>
+
+                        </div><a data-scale="0" href="https://www.jssor.com" style="display:none;position:absolute;">web animation</a>
+                        <!-- Thumbnail Navigator -->
+                        <div data-u="thumbnavigator" class="jssort101" style="position:absolute;left:0px;bottom:-90px;width:980px;height:100px;background-color:#000;" data-autocenter="1" data-scale-bottom="0.75">
+                            <div data-u="slides">
+                                <div data-u="prototype" class="p" style="width:190px;height:90px;">
+                                    <div data-u="thumbnailtemplate" class="t"></div>
+                                    <svg viewbox="0 0 16000 16000" class="cv">
+                                        <circle class="a" cx="8000" cy="8000" r="3238.1"></circle>
+                                        <line class="a" x1="6190.5" y1="8000" x2="9809.5" y2="8000"></line>
+                                        <line class="a" x1="8000" y1="9809.5" x2="8000" y2="6190.5"></line>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Arrow Navigator -->
+                        <div data-u="arrowleft" class="jssora106" style="width:55px;height:55px;top:162px;left:30px;" data-scale="0.75">
+                            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                                <circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+                                <polyline class="a" points="7930.4,5495.7 5426.1,8000 7930.4,10504.3 "></polyline>
+                                <line class="a" x1="10573.9" y1="8000" x2="5426.1" y2="8000"></line>
+                            </svg>
+                        </div>
+                        <div data-u="arrowright" class="jssora106" style="width:55px;height:55px;top:162px;right:30px;" data-scale="0.75">
+                            <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                                <circle class="c" cx="8000" cy="8000" r="6260.9"></circle>
+                                <polyline class="a" points="8069.6,5495.7 10573.9,8000 8069.6,10504.3 "></polyline>
+                                <line class="a" x1="5426.1" y1="8000" x2="10573.9" y2="8000"></line>
+                            </svg>
+                        </div>
+                    </div>
+                    <script type="text/javascript">jssor_1_slider_init();
+                    </script>
+                    <!-- #endregion Jssor Slider End -->
+                </body>
+                </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+            <div class="col-md-6  col-lg-6 col-sm-6  col-12">
+                <div class="product-dtl">
+                    <div class="product-info">
+                        <div class="product-name fw-bold fs-3">{{ p.name }}</div>
+                        <div class="reviews-counter">
+                            <div class="rate " >
+                                <input type="radio" id="star5" name="rate" value="5" checked />
+                                <label for="star5" title="text"></label>
+                                <input type="radio" id="star4" name="rate" value="4" checked />
+                                <label for="star4" title="text"></label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text"></label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text"></label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text"></label>
+                            </div>
+                        </div>
+                        <div class="product-price-discount " id="six"><span id="sprice">&#8377;{{ p.sellingprice }}</span><span
+                                class="line-through" id="mrp">&#8377;{{ p.mrp }}</span>
+                        </div>
+                        
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="size">Size</label>
+                            <select id="size" name="size" class="form-control" onchange="setprice(this)">
+{% for v in p.sizes.all %}
+                                <option value="{{ v.id }}" data-rc="{{ v.sellingprice }}" data-clnc="{{ v.mrp }}"  >{{ v.size }}</option>
+                            
+{% endfor %}
+
+
+                            </select>
+                                                       
+                        </div>
+
+                    </div>
+                    <form action="{% url 'cart:cart_add' product_id=p.id  %}" method="post">
+                        {% csrf_token %}
+                        {{ cart_product_form }}
+                        <input type="hidden"  name="sizeidd" id="sizeidd" />
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-4  mt-4 ">
+                               
+
+
+                                <input type="submit" value="Add to Cart" class="btn text container bg-dark border-dark">
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-3 col-4 mt-4 ">
+                                <input type="submit" value="Buy Now" class="btn gr container bg-white border-dark">
+                            </div>
+                        </div>
+                    </form>
+                    <p>Expected Delivery Within 5 to 7 days </p>
+                </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById("size").dispatchEvent(new Event('change'));
+        function setprice(x)
+        {
+            document.getElementById("sizeidd").value=x.value;
+            var sellingprice = x.options[event.target.selectedIndex].dataset.rc;
+  var mrp = x.options[event.target.selectedIndex].dataset.clnc;
+document.getElementById("sprice").innerHTML="&#8377;"+sellingprice;
+document.getElementById("mrp").innerHTML="&#8377;"+mrp;
+              
+        }
+        </script> 
+        <div class="product-info-tabs">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab"
+                        aria-controls="description" aria-selected="true">Description</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
+                        aria-controls="review" aria-selected="false">Reviews</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="description" role="tabpanel"
+                    aria-labelledby="description-tab">
+                    {{ p.description }}
+                </div>
+                <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                    <div class="review-heading">REVIEWS</div>
+
+
+
+<link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" rel="stylesheet" />
+<style>
+#reviewslider img{
+    width: 100%;
+    height: 100%;
+}
+
+#reviewslider .container{
+    max-width: 800px;
+    background-color: white;
+    padding: 0;
+}
+#reviewslider .review{
+    font-size: 30px;
+    font-weight: 600;
+    padding: 30px 0 ;
+}
+#reviewslider .name{
+    font-size: 18px;
+    color: #c1e718;
+    margin: 0;
+}
+#reviewslider .job{
+    color: #c8c8c8;
+    font-size: 14px;
+}
+#reviewslider .carousel-inner{
+    max-width: 800px;
+}
+#reviewslider.fa-minus {
+    font-size: 14px;
+}
+#reviewslider .carousel-indicators {
+    bottom: -20px;
+    right: 0;
+    margin: 0;
+}
+
+#reviewslider .carousel-indicators [data-bs-target ] {
+    height: 10px;
+    border: 2px solid black;
+    width: 10px;
+    background-color: inherit;
+    border-radius: 50%;
+}
+#reviewslider .carousel-indicators .active{
+    border: 2px solid transparent;
+    background-color:#c1e718;
+}
+#reviewslider .left{
+    color: rgb(20, 20, 20);
+    font-weight: 600;
+}
+#reviewslider .right{
+    color: rgb(12, 12, 12);
+    font-weight: 600;
+}
+#reviewslider .carousel-control-next, .carousel-control-prev {
+    position: relative;
+
+}
+@media (max-width:560px) {
+    #reviewslider .review{
+        font-size: 14px;
+        font-weight: 600;
+    }
+    #reviewslider .name{
+        font-size: 13px;
+    }
+    #reviewslider .job{
+        font-size: 10px;
+    }
+    #reviewslider .right{
+        font-size: 12px;
+    }
+    #reviewslider .left{
+        font-size: 12px;
+    }
+    #reviewslider .carousel-indicators [data-bs-target ] {
+        height: 8px;
+        border: 1px solid black;
+        width: 8px;
+        background-color: inherit;
+        border-radius: 50%;
+    }
+    #reviewslider .carousel-indicators .active{
+        border: 1px solid transparent;
+        background-color:#c1e718;
+    }
+}
+</style>
+<div class="row card">
+                    <div class="d-flex align-items-center py-5 mh-100" id="reviewslider">    
+                        <a class="carousel-control-prev text-decoration-none " href="#mycarousel" role="button" data-bs-slide="prev">
+                            <div class="d-flex flex-column justify-content-center me-2 ms-auto left">PREV<span class="fas fa-arrow-left"></span> </div> <span class="sr-only">Previous</span>
+                        </a>
+                        <div class="container">
+                            <div id="mycarousel" class="carousel slide" data-bs-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    <li data-bs-target="#mycarousel" data-bs-slide-to="0" class="active"></li>
+                                    <li data-bs-target="#mycarousel" data-bs-slide-to="1"></li>
+                                    <li data-bs-target="#mycarousel" data-bs-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+{% for pro in r %}
+                                    <div class="carousel-item ">
+                                        <div class="row">
+                                            <div class="col-lg-6 ">
+                                                <img src="/media/{{ pro.photo }}" class="d-block " alt="...">
+                                            </div>
+                                            <div class="col-lg-6 ">
+                                                <div class=" d-flex flex-column justify-content-center my-5 px-3">
+                                                    <p class="review text-center">"{{ pro.message }}"</p>
+                                                    <div class="name d-flex align-items-center justify-content-center">
+                                                        <span class="fas fa-minus pe-1"></span>
+                                                        <p class="m-0">{{ pro.username }}</p>
+                                                    </div>
+                                                    <p class="job text-center">
+                                                        <ul class="nav-link float-end">
+                                                            <i class="fa fa-star {% if pro.rating > '0' %} text-warning {% endif %}"></i>
+                                                            <i class="fa fa-star {% if pro.rating > '1' %} text-warning {% endif %}"></i>
+                                                            <i class="fa fa-star {% if pro.rating > '2' %} text-warning {% endif %}"></i>
+                                                            <i class="fa fa-star {% if pro.rating > '3' %} text-warning {% endif %}"></i>
+                                                            <i class="fa fa-star {% if pro.rating > '4' %} text-warning {% endif %}"></i>
+                                                        </ul>
+                                                    </p>
+                                                </div>
+                                            </div>
+                
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        <a class="carousel-control-next text-decoration-none " href="#mycarousel" role="button" data-bs-slide="next">
+                            <div class="d-flex flex-column justify-content-center right ms-2 me-auto"> NEXT <span class="fas fa-arrow-right"></span> </div> <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+
+
+
+                </div>
+
+
+
+
+
+
+<label class=" text-dark fw-bold mt-5">ENTER YOUR REVIEW HERE</label>
+                    <form class="review-form" action="/insertreview" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        <input type="hidden" name="userid" value="{{ user.id }}" />
+                        <label>Your Name</label>
+                        <input type="text" name="username" class="form-control" placeholder="Your Name" value="{{ user.first_name }} {{ user.last_name }}" />
+                        <input type="hidden" name="productsid" value="{{ p.id }}" />
+                        <div class="form-group">
+                            <label>Your rating</label>
+                            <div class="reviews-counter">
+
+                                <div class="rating-stars">
+                                    <input type="radio" name="rating" id="rs0" checked><label for="rs0"></label>
+                                    <input type="radio" name="rating" id="rs1"><label for="rs1"></label>
+                                    <input type="radio" name="rating" id="rs2"><label for="rs2"></label>
+                                    <input type="radio" name="rating" id="rs3"><label for="rs3"></label>
+                                    <input type="radio" name="rating" id="rs4"><label for="rs4"></label>
+                                    <input type="radio" name="rating" id="rs5"><label for="rs5"></label>
+                                    <span class="rating-counter"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="hidden" id="ratingstar" name="rating" />
+                            <label>Your message</label>
+                            <textarea class="form-control" placeholder="ENTER YOUR REVIEW " name="message"
+                                style="height:20%; width:100%;"></textarea>
+                        </div>
+                        <div class="form-group">
+
+                            <label>Product photo</label>
+                            <input type="file" class="form-control" name="photo" />
+                        </div>
+
+                        <button class="btn mt-3" id="bg">Submit Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<style>
+    .productname{
+        font-size:19px;
+    }
+    @media only screen and (max-width: 768px) {
+        /* For mobile phones: */
+        .productname{
+          font-size:11px;
+        }
+        
+      }
+      .rate {
+        font-size: 15px;
+    }
+
+    @media only screen and (max-width: 768px) {
+
+        /* For mobile phones: */
+        .rate {
+            font-size: 8.5px;
+        }
+
+    }
+    </style>
+<section>
+<h3 class="fw-bold text-center">MORE PRODUCTS</h3>
+<div class="row mt-3" id="luxury">
+    {% for pro in morep %}
+    <div class="col-lg-3 col-md-3 col-sm-3 col-6 mb-4" id="homepageproducts">
+        <a href="/productdetail/{{ pro.id }}/{{ pro.brandid_id }}" class="text-decoration-none text-dark">
+            <div class="col  border-dark card p-3 "  style="border-radius: 10%;">
+            <img src="/media/{{ pro.photo2 }}" width="100%"  style="border-radius: 10%;">
+            <h5 class="productname ">{{ pro.name }}</h5>
+            <ul class="nav-link"  style="margin-left:-14px;">
+                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+            </ul>
+            <h4><span class="gr">&#8377;{{ pro.sellingprice }}</span><span
+                class="text-decoration-line-through ps-2 ">&#8377;{{ pro.mrp }}</span> </h4>        </div></a>
+    </div>
+    {% endfor %}
+</div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="	sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+<script>$(document).ready(function () {
+        var slider = $("#slider");
+        var thumb = $("#thumb");
+        var slidesPerPage = 4; //globaly define number of elements per page
+        var syncedSecondary = true;
+        slider.owlCarousel({
+            items: 1,
+            slideSpeed: 2000,
+            nav: false,
+            autoplay: false,
+            dots: false,
+            loop: true,
+            responsiveRefreshRate: 200
+        }).on('changed.owl.carousel', syncPosition);
+        thumb
+            .on('initialized.owl.carousel', function () {
+                thumb.find(".owl-item").eq(0).addClass("current");
+            })
+            .owlCarousel({
+                items: slidesPerPage,
+                dots: false,
+                nav: true,
+                item: 4,
+                smartSpeed: 200,
+                slideSpeed: 500,
+                slideBy: slidesPerPage,
+                navText: ['<svg width="18px" height="18px" viewBox="0 0 11 20"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M9.554,1.001l-8.607,8.607l8.607,8.606"/></svg>', '<svg width="25px" height="25px" viewBox="0 0 11 20" version="1.1"><path style="fill:none;stroke-width: 1px;stroke: #000;" d="M1.054,18.214l8.606,-8.606l-8.606,-8.607"/></svg>'],
+                responsiveRefreshRate: 100
+            }).on('changed.owl.carousel', syncPosition2);
+        function syncPosition(el) {
+            var count = el.item.count - 1;
+            var current = Math.round(el.item.index - (el.item.count / 2) - .5);
+            if (current < 0) {
+                current = count;
+            }
+            if (current > count) {
+                current = 0;
+            }
+            thumb
+                .find(".owl-item")
+                .removeClass("current")
+                .eq(current)
+                .addClass("current");
+            var onscreen = thumb.find('.owl-item.active').length - 1;
+            var start = thumb.find('.owl-item.active').first().index();
+            var end = thumb.find('.owl-item.active').last().index();
+            if (current > end) {
+                thumb.data('owl.carousel').to(current, 100, true);
+            }
+            if (current < start) {
+                thumb.data('owl.carousel').to(current - onscreen, 100, true);
+            }
+        }
+        function syncPosition2(el) {
+            if (syncedSecondary) {
+                var number = el.item.index;
+                slider.data('owl.carousel').to(number, 100, true);
+            }
+        }
+        thumb.on("click", ".owl-item", function (e) {
+            e.preventDefault();
+            var number = $(this).index();
+            slider.data('owl.carousel').to(number, 300, true);
+        });
+
+
+        $(".qtyminus").on("click", function () {
+            var now = $(".qty").val();
+            if ($.isNumeric(now)) {
+                if (parseInt(now) - 1 > 0) { now--; }
+                $(".qty").val(now);
+            }
+        })
+        $(".qtyplus").on("click", function () {
+            var now = $(".qty").val();
+            if ($.isNumeric(now)) {
+                $(".qty").val(parseInt(now) + 1);
+            }
+        });
+    });</script>
+{%endblock%}

@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<html>
+<head>
+<title>My home page</title>
+<link href="{% static 'bootstrap/css/bootstrap.min.css' %}" type="text/css" rel="stylesheet"/>
+<link href="{% static 'bootstrap/css/bootstrap-theme.min.css' %}" type="text/css" rel="stylesheet" />
+<link href="{% static 'style1.css' %}" type="text/css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head> 
+<body>
+<div class="container-fluid">
+<div class="row" id="header">
+<div class="col-md-12">
+<nav class="nav navbar-nav" id="nav">
+<ul class ="nav navbar-nav"> 
+<li><a href="/">Home</a></li> 
+<li><a href="/menu/">Menu</a></li> 
+<li> <a href="/about/">About us</a></li> 
+<li> <a href="/products/">Products</a></li> 
+<li> <a href="/services/">Services</a></li>
+<li> <a href="/offer/">Offer</a></li>
+<li> <a href="/blog/">Blog</a></li>
+<li> <a href="/contacts/">Contacts</a></li>
+<li> <a href="/order/">Order Now</a></li>
+</ul>
+</nav>
+</div>
+</div>
+<div class="col-md-12">
+<div class="row" id="header1">
+<h2> <span style="font-size:90px;color:#FF0033; font-family:monotype corsiva;"><b>Golden Crush</b></span><br>
+<span style="font-size:120px;color:#000;"> <b>Bakery Shop</span></b></h2>
+</div>
+</div>
+
+
+{% block content %}
+{% endblock %}
+
+
+
+
+<div class="row" id="subcontant2">
+<div class="col-md-4">
+<h1><b>LOCATION </span></b></h1>
+<p><span style="font-size:20px;"><b>Near SSD College, Amrik Singh Road, Bathinda</b><span></p>
+</div>
+<div class="col-md-4">
+<h1><b>HOURS</span></b></h1>
+<p><span style="font-size:20px;"><b>WEEKDAYS 7.00 AM 8.00 PM</b></p>
+<p><span style="font-size:20px;"><b>WEEKEND 8.00 AM 8.00 PM</b></p>
+</div>
+<div class="col-md-4">
+<h1><b>CONTACT-US</span></b></h1>
+<p><span style="font-size:20px;"><b>PHONE--91 (9876543211)</b></p>
+</div>
+
+</div>
+<hr>
+<h5 class="text-center"><span style="color:#FF0099;font-size:30px;"><b>Copyright &copy;  2020 | PRIVACY POLICY  | ALL RIGHTS RESERVED</b></span></h5>
+</div>
+</div>
+
+</body>
+</html>

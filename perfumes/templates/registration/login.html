@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="row text-center padding ">
+    <div class="col-md-12 offser-md-1">
+        <h1 class="fw-bold gr fs-1" id="bg-1">LOGIN</h1>
+    </div>
+</div>
+<div class="row padding">
+    <div class="container">
+        <div class="col-md-12 col-lg-12 col-sm-12 col-12 mt-5">
+            <div class="d-flex justify-content-center">
+                <form method="post" class="signupform">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn text border-0 p-2 container" id="bg"> LOGIN </button>
+                </form>
+            </div>
+            <div class="d-flex justify-content-center">
+            <a href="/password-reset/" class="gr"  >Forget Password?</a>
+        </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $(".signupform input").addClass("form-control");
+    });
+</script>
+{% endblock %}

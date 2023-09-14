@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .productname {
+        font-size: 23px;
+    }
+
+    @media only screen and (max-width: 768px) {
+
+        /* For mobile phones: */
+        .productname {
+            font-size: 10.5px;
+        }
+
+    }
+</style>
+<div class="row bg-white p-5" id="luxury">
+    <div class="col-lg-10 offset-lg-1">
+        <div class="row " data-aos="fade-up" id="homepageproducts">
+            {% for pro in l %}
+            <div class="col-lg-4 col-md-4 col-sm-6 col-6 mb-4" >
+                <a href="/productdetail/{{ pro.id }}/{{ pro.brandid_id }}" class="text-decoration-none text-dark"
+                    data-aos="fade-left">
+                    <div class="col  border-dark card p-3" style="border-radius: 10%;">
+                        <img src="/media/{{ pro.photo2 }}" style="border-radius: 10%;">
+                        <h5 class="productname">{{ pro.name}}</h5>
+                        <ul class="nav-link">
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-solid fa-star nav" style="color: #ffd43b;"></i>
+                            <i class="fa-sharp fa-regular fa-star" style="color: #ffd43b;"></i>
+                        </ul>
+                        <h4><span class="gr">&#8377;{{ pro.sellingprice }}</span><span
+                                class="text-decoration-line-through ps-2">&#8377;{{ pro.mrp }}</span> </h4>
+
+                    </div>
+                </a>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+
+
+{%endblock%}

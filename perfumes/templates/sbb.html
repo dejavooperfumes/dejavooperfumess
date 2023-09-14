@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .padding {
+        padding: 30px;
+    }
+
+    @media screen and (max-width: 600px) {
+
+        /* For mobile phones: */
+        .padding {
+            padding: 0px;
+        }
+        
+    }
+    
+</style>
+
+<section class=" container-fluid " >
+        <div class="row bg-dark " id="homepageproducts">
+            {% for br in b %}
+            <div class="col-lg-3 col-md-3 col-sm-4 col-4  mt-2 mb-2" data-aos="fade-up">
+                <div class="col  border-dark card padding " style="border-radius: 20%;">
+                    <a href="/product/{{ br.id }}"><img src="/media/{{ br.photo }}" class="p-4 "
+                            style="border-radius: 20%;"></a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+{%endblock%}
